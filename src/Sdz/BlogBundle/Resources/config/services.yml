@@ -1,0 +1,17 @@
+parameters:
+
+services:
+    sdz_blog.antispam:
+        class: Sdz\BlogBundle\Service\SdzAntispam
+        tags:
+            -  { name: twig.extension }
+services:
+    sdz_blog.ckeditor:
+        class:        Sdz\BlogBundle\Form\Extension\CkeditorType
+        tags:
+            - { name: form.type, alias: ckeditor }
+services:
+    sdz_blog.lienweb:
+        class: Sdz\BlogBundle\Service\SdzLienWeb
+        tags:
+            - { name: twig.extension }

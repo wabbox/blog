@@ -1,0 +1,42 @@
+sdzblog_accueil:
+   pattern: /{page}
+   defaults: {_controller: SdzBlogBundle:Blog:index, page: 1 }
+   requirements:
+     page: \d*
+
+sdzblog_voir:
+    pattern: /article/{id}
+    defaults: {_controller: SdzBlogBundle:Blog:voir }
+    requirements:
+      id: \d+
+
+sdzblog_ajouter:
+     pattern: /ajouter
+     defaults: {_controller: SdzBlogBundle:Blog:ajouter }
+
+sdzblog_modifier:
+    pattern: /modifier/{id}
+    defaults: {_controller: SdzBlogBundle:Blog:modifier }
+    requirements:
+      id: \d+
+
+sdzblog_supprimer:
+    pattern: /supprimer/{id}
+    defaults: {_controller: SdzBlogBundle:Blog:supprimer }
+    requirements:
+      id: \d+
+
+sdzblog_voir_slug:
+    pattern:   /{annee}/{slug}.{_format}
+    defaults:  { _controller: SdzBlogBundle:Blog:voirSlug, _format: html }
+    requirements:
+        annee: \d{4}
+        _format: html|xml
+
+sdzblog_test:
+    pattern: /test
+    defaults: {_controller: SdzBlogBundle:Blog:test }
+
+sdzblog_mail:
+    pattern: /mail
+    defaults: {_controller: SdzBlogBundle:Blog:mail }

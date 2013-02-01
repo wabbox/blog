@@ -1,0 +1,24 @@
+{# src/Sdz/BlogBundle/Resources/views/Blog/supprimer.html.twig #}
+
+{% extends "SdzBlogBundle::layout.html.twig" %}
+
+{% block title %}
+	Spprimer un article - {{ parent() }}
+{% endblock %}
+
+{% block sdzblog_body %}
+
+	<h2>Supprimer un article</h2>
+
+	<p>
+		Vous êtes sur le point de supprimer un article. Cette action sera irrémédiable.
+	</p>
+
+	<p>
+		<a href="{{ path('sdzblog_accueil') }}" class="btn">
+			<i class="icon-chevron-left"></i>
+			Retour à l'accueil
+		</a>
+	</p>
+
+{% endblock %}

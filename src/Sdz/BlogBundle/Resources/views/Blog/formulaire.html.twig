@@ -1,0 +1,53 @@
+{# src/Sdz/BlogBundle/Resources/views/Blog/formulaire.html.twig #}
+
+{# Cette vue n'hérite de personne, elle sera inclue par d'autres vues qui, elles, hériteront sûrement du layout. #}
+{# Je dis "sûrement" car, ici pour cette vue, on n'en sait rien et c'est une info qui ne nous concerne pas. #}
+
+<h3>Formulaire d'article</h3>
+
+{# Ici on laisse vide la vue pour l'instant, on la comblera plus tard lorsque saura afficher un formulaire. #}
+<div class="well">
+	    <form method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form) }}
+    	 <a href="#" id="add_category" class="btn">Ajouter une catégorie</a><br /><br />
+    	<input type="submit" class="btn btn-primary" />
+    </form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $('#sdz_blogbundle_articletype_categories');
+
+    // On définit une fonction qui va ajouter un champ.
+    function add_category() {
+        // On définit le numéro du champ (en comptant le nombre de champs déjà ajoutés).
+        index = $container.children().length;
+
+        // On ajoute à la fin de la balise <div> le contenu de l'attribut « data-prototype »,
+        // après avoir remplacé la variable __name__ qu'il contient par le numéro du champ.
+        $container.append($($container.attr('data-prototype').replace(/__name__/g, index)));
+
+        // On ajoute également un bouton pour pouvoir supprimer la catégorie
+        $container.append($('<a href="#" id="delete_category_' + index + '" class="btn btn-danger">Supprimer</a><br /><br />'));
+
+        // On supprime le champ à chaque clic sur le lien de suppression
+        $('#delete_category_' + index).click(function() {
+            $(this).prev().remove();  // $(this).prev() est le template ajouté
+            $(this).remove();         // $(this) est le lien de suppression
+            return false;
+        });
+    }
+
+    // On ajoute un premier champ directement s'il n'en existe pas déjà un (cas d'un nouvel article par exemple).
+    if($container.children().length == 0) {
+        add_category();
+    }
+
+    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    $('#add_category').click(function() {
+        add_category();
+        return false;
+    });
+});
+</script>
